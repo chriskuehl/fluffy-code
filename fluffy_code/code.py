@@ -4,7 +4,7 @@ import typing
 import pygments.lexer
 import pygments.lexers.special
 from markupsafe import Markup
-from pyquery import PyQuery as pq
+from pyquery import PyQuery as pq  # type: ignore
 
 from fluffy_code.style import StyleConfig
 

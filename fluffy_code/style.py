@@ -44,7 +44,7 @@ class StyleConfig:
         cls,
         *,
         name: str,
-        pygments_style: pygments.style.Style,
+        pygments_style: typing.Type[pygments.style.Style],
         ansi_fg_colors: typing.Dict[str, str],
         ansi_bg_colors: typing.Dict[str, str],
         border_color: str,
@@ -63,7 +63,7 @@ class StyleConfig:
         This takes care of configuring the style for compatibility with
         pygments_ansi_color.
         """
-        new_styles = dict(pygments_style.styles)
+        new_styles = dict(pygments_style.styles)  # type: ignore
         new_styles.update(
             pygments_ansi_color.color_tokens(
                 ansi_fg_colors,
@@ -72,7 +72,7 @@ class StyleConfig:
             ),
         )
         new_pygments_style = type(
-            'FluffyCode' + pygments_style.__name__,
+            'FluffyCode' + pygments_style.__name__,  # type: ignore
             (pygments_style,),
             {'styles': new_styles},
         )
