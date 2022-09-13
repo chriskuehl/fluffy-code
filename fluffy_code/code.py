@@ -3,10 +3,10 @@ import typing
 
 import pygments.lexer
 import pygments.lexers.special
+from markupsafe import Markup
 from pyquery import PyQuery as pq
 
 from fluffy_code.style import StyleConfig
-from markupsafe import Markup
 
 
 class HighlightConfig(typing.NamedTuple):
@@ -14,7 +14,7 @@ class HighlightConfig(typing.NamedTuple):
     highlight_diff: bool
 
     @classmethod
-    def plain_text(cls) -> "HighlightConfig":
+    def plain_text(cls) -> 'HighlightConfig':
         return cls(
             lexer=pygments.lexers.special.TextLexer(),
             highlight_diff=False,
@@ -57,11 +57,11 @@ class HighlightConfig(typing.NamedTuple):
 
 
 def get_global_css() -> str:
-    return importlib.resources.read_text("fluffy_code.static", "global.css")
+    return importlib.resources.read_text('fluffy_code.static', 'global.css')
 
 
 def get_global_javascript() -> str:
-    return importlib.resources.read_text("fluffy_code.static", "global.js")
+    return importlib.resources.read_text('fluffy_code.static', 'global.js')
 
 
 def render(
@@ -78,10 +78,10 @@ def render(
     )
 
     line_numbers = Markup('<div class="line-numbers">{}</div>').format(
-        Markup("").join(
+        Markup('').join(
             # TODO: don't use id in order to support multiple per page
-            Markup("<a id={}>{}</a>").format(
-                f"LL{i}",
+            Markup('<a id={}>{}</a>').format(
+                f'LL{i}',
                 i,
             )
             for i in range(1, line_count + 1)
@@ -97,7 +97,7 @@ def render(
     )
 
     return Markup('<div class="fluffy-code {class_}">{line_numbers}{code}</div>').format(
-        class_=f"highlight-{style_config.name}",
+        class_=f'highlight-{style_config.name}',
         line_numbers=line_numbers,
         code=code,
     )

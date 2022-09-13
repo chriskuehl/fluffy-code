@@ -6,7 +6,7 @@ from fluffy_code.style import StyleConfig
 
 def default_style() -> StyleConfig:
     return StyleConfig.from_pygments_style(
-        name="default",
+        name='default',
         pygments_style=pygments.styles.xcode.XcodeStyle,
         ansi_fg_colors={
             'Black': '#000000',
@@ -28,8 +28,8 @@ def default_style() -> StyleConfig:
             'Cyan': '#34E2E2',
             'White': '#ffffff',
         },
-        border_color="#eeeeee",
-        line_numbers_fg_color="#222222",
+        border_color='#eeeeee',
+        line_numbers_fg_color='#222222',
         line_numbers_bg_color='#fafafa',
         line_numbers_hover_bg_color='#ffeaaf',
         line_numbers_selected_bg_color='#ffe18e',
@@ -43,7 +43,7 @@ def default_style() -> StyleConfig:
 
 def monokai_style() -> StyleConfig:
     return StyleConfig.from_pygments_style(
-        name="monokai",
+        name='monokai',
         pygments_style=pygments.styles.monokai.MonokaiStyle,
         ansi_fg_colors={
             'Black': '#555753',

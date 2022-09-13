@@ -12,28 +12,28 @@ def main() -> typing.Optional[int]:
     style_config_monokai = prebuilt_styles.monokai_style()
 
     python_code = code.render(
-        open("testing/samples/python.py").read(),
+        open('testing/samples/python.py').read(),
         style_config=style_config_default,
         highlight_config=code.HighlightConfig(
-            lexer=pygments.lexers.get_lexer_by_name("python"),
+            lexer=pygments.lexers.get_lexer_by_name('python'),
             highlight_diff=False,
         ),
     )
 
     diff_python = code.render(
-        open("testing/samples/python.diff").read(),
+        open('testing/samples/python.diff').read(),
         style_config=style_config_default,
         highlight_config=code.HighlightConfig(
-            lexer=pygments.lexers.get_lexer_by_name("python"),
+            lexer=pygments.lexers.get_lexer_by_name('python'),
             highlight_diff=True,
         ),
     )
 
     ansi_color = code.render(
-        open("testing/samples/ansi-color").read(),
+        open('testing/samples/ansi-color').read(),
         style_config=style_config_monokai,
         highlight_config=code.HighlightConfig(
-            lexer=pygments.lexers.get_lexer_by_name("ansi-color"),
+            lexer=pygments.lexers.get_lexer_by_name('ansi-color'),
             highlight_diff=False,
         ),
     )
@@ -60,18 +60,20 @@ def main() -> typing.Optional[int]:
         </body>
     </html>
     """).format(
-        css=Markup("\n".join((
-            code.get_global_css(),
-            style_config_default.css,
-            style_config_monokai.css,
-        ))),
+        css=Markup(
+            '\n'.join((
+                code.get_global_css(),
+                style_config_default.css,
+                style_config_monokai.css,
+            )),
+        ),
         javascript=Markup(code.get_global_javascript()),
         python_code=Markup(python_code),
         diff_python=Markup(diff_python),
         ansi_color=Markup(ansi_color),
     )
 
-    with open("test.html", "w") as f:
+    with open('test.html', 'w') as f:
         f.write(page)
 
 

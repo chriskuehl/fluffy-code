@@ -1,9 +1,9 @@
-from dataclasses import dataclass
 import typing
+from dataclasses import dataclass
 
+import pygments.formatters
 import pygments.style
 import pygments.styles.xcode
-import pygments.formatters
 import pygments_ansi_color
 
 
@@ -57,18 +57,20 @@ class StyleConfig:
         diff_add_selected_line_bg_color: str,
         diff_delete_line_bg_color: str,
         diff_delete_selected_line_bg_color: str,
-    ) -> "StyleConfig":
+    ) -> 'StyleConfig':
         """Create StyleConfig from a classic Pygments style.
 
         This takes care of configuring the style for compatibility with
         pygments_ansi_color.
         """
         new_styles = dict(pygments_style.styles)
-        new_styles.update(pygments_ansi_color.color_tokens(
-            ansi_fg_colors,
-            ansi_bg_colors,
-            enable_256color=True,
-        ))
+        new_styles.update(
+            pygments_ansi_color.color_tokens(
+                ansi_fg_colors,
+                ansi_bg_colors,
+                enable_256color=True,
+            ),
+        )
         new_pygments_style = type(
             'FluffyCode' + pygments_style.__name__,
             (pygments_style,),
@@ -97,7 +99,7 @@ class StyleConfig:
     @property
     def css(self) -> str:
         prefix = f'.highlight-{self.name}'
-        css = self.pygments_formatter.get_style_defs(f"{prefix} .highlight")
+        css = self.pygments_formatter.get_style_defs(f'{prefix} .highlight')
         css += f"""
             {prefix} .line-numbers {{
               background-color: {self.line_numbers_bg_color};
