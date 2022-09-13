@@ -1,0 +1,36 @@
+.fluffy-code {
+    font-family: monospace;
+}
+
+.fluffy-code .line-numbers {
+    padding: 2px 0;
+    border-right-width: 1px;
+    border-right-style: solid;
+
+    float: left;
+    line-height: 1.25em;
+    text-align: right;
+}
+
+.fluffy-code .line-numbers a {
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+    padding-left: 8px;
+    padding-right: 5px;
+}
+
+.fluffy-code .text pre {
+    overflow-x: auto;
+    margin: 0;
+}
+
+.fluffy-code .highlight > pre {
+    padding: 2px 0;
+    line-height: 125%;
+}
+
+.fluffy-code .highlight > pre > span {
+    padding-left: 5px;
+    display: block;
+}
