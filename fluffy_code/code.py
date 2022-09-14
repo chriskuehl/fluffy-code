@@ -61,7 +61,7 @@ def render(
     text: str,
     *,
     style_config: StyleConfig,
-    highlight_config: HighlightConfig:
+    highlight_config: HighlightConfig,
 ) -> Markup:
     line_count = len(text.splitlines())
 
