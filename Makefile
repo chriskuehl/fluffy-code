@@ -4,3 +4,6 @@ test:
 	poetry run coverage report
 	poetry run mypy fluffy_code
 
+.PHONY: test.html
+test.html:
+	poetry run python -m testing.generate_test_html
