@@ -1,23 +1,22 @@
-import pygments.lexers.special
 import pygments.lexers.python
+import pygments.lexers.special
 from markupsafe import Markup
 from pyquery import PyQuery
 
 from fluffy_code import code
 
 
-
 def test_get_global_css():
-    assert ".fluffy-code {" in code.get_global_css()
+    assert '.fluffy-code {' in code.get_global_css()
 
 
 def test_get_global_javascript():
-    assert "$(document).ready(" in code.get_global_javascript()
+    assert '$(document).ready(' in code.get_global_javascript()
 
 
 def test_render_plain_text(default_style):
     rendered = code.render(
-        "simple line of text",
+        'simple line of text',
         style_config=default_style,
         highlight_config=code.HighlightConfig(
             lexer=pygments.lexers.special.TextLexer(),

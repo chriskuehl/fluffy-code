@@ -6,4 +6,4 @@ def test_pygments_ansi_color_tokens(default_style):
 
 
 def test_css(default_style):
-    assert ".highlight-default .line-numbers {" in default_style.css
+    assert '.highlight-default .line-numbers {' in default_style.css
