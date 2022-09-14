@@ -13,13 +13,6 @@ class HighlightConfig(typing.NamedTuple):
     lexer: pygments.lexer.Lexer
     highlight_diff: bool
 
-    @classmethod
-    def plain_text(cls) -> 'HighlightConfig':
-        return cls(
-            lexer=pygments.lexers.special.TextLexer(),
-            highlight_diff=False,
-        )
-
     def highlight(self, text: str, style_config: StyleConfig) -> str:
         highlighted = pygments.highlight(
             text,
@@ -68,7 +61,7 @@ def render(
     text: str,
     *,
     style_config: StyleConfig,
-    highlight_config: HighlightConfig = HighlightConfig.plain_text(),
+    highlight_config: HighlightConfig,
 ) -> Markup:
     line_count = len(text.splitlines())
 
