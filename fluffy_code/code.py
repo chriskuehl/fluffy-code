@@ -1,5 +1,5 @@
 import importlib.resources
-import typing
+from dataclasses import dataclass
 
 import pygments.lexer
 import pygments.lexers.special
@@ -9,9 +9,19 @@ from pyquery import PyQuery as pq  # type: ignore
 from fluffy_code.style import StyleConfig
 
 
-class HighlightConfig(typing.NamedTuple):
+@dataclass(frozen=True)
+class HighlightConfig:
     lexer: pygments.lexer.Lexer
     highlight_diff: bool
+
+    def __post_init__(self) -> None:
+        if self.lexer.options.get('stripnl') is not False:
+            raise AssertionError(
+                'Cannot construct HighlightConfig using a Pygments lexer with stripnl not set to False.\n'
+                '\n'
+                'Make sure the lexer you passed in has `stripnl=False` when constructing it.\n'
+                'This is needed to prevent a bug in code output when there are trailing newlines.',
+            )
 
     def highlight(self, text: str, style_config: StyleConfig) -> str:
         highlighted = pygments.highlight(

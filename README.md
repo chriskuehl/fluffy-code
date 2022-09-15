@@ -108,7 +108,7 @@ markup = code.render(
     highlight_config=code.HighlightConfig(
         # Adjust lexer name as needed. Pygments also provides other options
         # such as guessing the lexer based on file extension or file contents.
-        lexer=pygments.lexers.get_lexer_by_name('python'),
+        lexer=pygments.lexers.get_lexer_by_name('python', stripnl=False),
         # Set to True if you want to highlight additions and deletions for a diff.
         highlight_diff=False,
     ),

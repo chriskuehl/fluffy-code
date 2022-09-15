@@ -1,5 +1,6 @@
 import pygments.lexers.python
 import pygments.lexers.special
+import pytest
 from markupsafe import Markup
 from pyquery import PyQuery
 
@@ -14,12 +15,24 @@ def test_get_global_javascript():
     assert '$(document).ready(' in code.get_global_javascript()
 
 
+def test_highlight_config_does_not_allow_lexer_with_stripnl_enabled():
+    with pytest.raises(AssertionError) as exc_info:
+        code.HighlightConfig(
+            lexer=pygments.lexers.special.TextLexer(),
+            highlight_diff=False,
+        )
+    assert (
+        'Cannot construct HighlightConfig using a Pygments lexer with stripnl not set to False'
+        in exc_info.value.args[0]
+    )
+
+
 def test_render_plain_text(default_style):
     rendered = code.render(
         'simple line of text',
         style_config=default_style,
         highlight_config=code.HighlightConfig(
-            lexer=pygments.lexers.special.TextLexer(),
+            lexer=pygments.lexers.special.TextLexer(stripnl=False),
             highlight_diff=False,
         ),
     )
@@ -38,7 +51,7 @@ def test_render_python_diff(default_style):
         ),
         style_config=default_style,
         highlight_config=code.HighlightConfig(
-            lexer=pygments.lexers.python.PythonLexer(),
+            lexer=pygments.lexers.python.PythonLexer(stripnl=False),
             highlight_diff=True,
         ),
     )

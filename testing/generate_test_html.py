@@ -15,7 +15,7 @@ def main() -> typing.Optional[int]:
         open('testing/samples/python.py').read(),
         style_config=style_config_default,
         highlight_config=code.HighlightConfig(
-            lexer=pygments.lexers.get_lexer_by_name('python'),
+            lexer=pygments.lexers.get_lexer_by_name('python', stripnl=False),
             highlight_diff=False,
         ),
     )
@@ -24,7 +24,7 @@ def main() -> typing.Optional[int]:
         open('testing/samples/python.diff').read(),
         style_config=style_config_default,
         highlight_config=code.HighlightConfig(
-            lexer=pygments.lexers.get_lexer_by_name('python'),
+            lexer=pygments.lexers.get_lexer_by_name('python', stripnl=False),
             highlight_diff=True,
         ),
     )
@@ -33,7 +33,7 @@ def main() -> typing.Optional[int]:
         open('testing/samples/ansi-color').read(),
         style_config=style_config_monokai,
         highlight_config=code.HighlightConfig(
-            lexer=pygments.lexers.get_lexer_by_name('ansi-color'),
+            lexer=pygments.lexers.get_lexer_by_name('ansi-color', stripnl=False),
             highlight_diff=False,
         ),
     )
