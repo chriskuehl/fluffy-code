@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fluffy-code"
-version = "0.0.1"
+version = "0.0.2"
 description = "A developer-friendly code rendering library for Python web applications"
 authors = ["Chris Kuehl <ckuehl@ckuehl.me>"]
 license = "Apache-2.0"
